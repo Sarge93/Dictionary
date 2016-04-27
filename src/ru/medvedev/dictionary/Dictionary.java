@@ -45,7 +45,11 @@ public class Dictionary {
 
     public void getWordInfo(String word) {
         GeneralRecord generalRecord = userController.getEntityByName(word);
-        System.out.println(generalRecord);
+        if (generalRecord != null) {
+            System.out.println(generalRecord);
+        } else {
+            System.out.println("Word is not found");
+        }
     }
 
     public void deleteWord(String word) {

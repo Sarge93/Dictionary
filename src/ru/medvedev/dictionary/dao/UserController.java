@@ -156,9 +156,6 @@ public class UserController extends AbstractController<GeneralRecord, String> {
 
             }
 
-            System.out.println(qToEng);
-            System.out.println(qToRus);
-
             statement.executeUpdate(qToEng.toString());
             statement.executeUpdate(qToRus.toString());
 
