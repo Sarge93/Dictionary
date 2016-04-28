@@ -1,11 +1,6 @@
 package ru.medvedev.test;
 
-import ru.medvedev.dictionary.Dictionary;
-import ru.medvedev.dictionary.Menu;
-import ru.medvedev.dictionary.records.GeneralRecord;
-
-import java.util.List;
-import java.util.Scanner;
+import ru.medvedev.dictionary.gui.Menu;
 
 /**
  * Created by Сергей on 25.04.2016.
