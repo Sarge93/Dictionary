@@ -8,8 +8,7 @@ import java.util.List;
 /**
  * Created by Сергей on 28.04.2016.
  */
-public class ShowAllWordsCommand implements Command {
-    private Dictionary dictionary = Dictionary.getInstance();
+public class ShowAllWordsCommand extends AbstractCommand {
 
     @Override
     public void execute() {

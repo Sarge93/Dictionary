@@ -4,6 +4,9 @@ import ru.medvedev.dictionary.Dictionary;
 import ru.medvedev.dictionary.command.*;
 import ru.medvedev.dictionary.records.GeneralRecord;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,6 +17,12 @@ public class Menu {
     private Menu() {}
 
     public static void getMenu() {
+
+        try {
+            FileInputStream inputStream = new FileInputStream(new File("dsad"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         Scanner scanner = new Scanner(System.in);
 

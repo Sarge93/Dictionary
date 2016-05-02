@@ -50,6 +50,7 @@ public class Dictionary {
         } else {
             System.out.println("Word is not found");
         }
+
     }
 
     public void deleteWord(String word) {
