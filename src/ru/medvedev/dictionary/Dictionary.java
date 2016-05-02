@@ -2,8 +2,6 @@ package ru.medvedev.dictionary;
 
 import ru.medvedev.dictionary.dao.UserController;
 import ru.medvedev.dictionary.records.GeneralRecord;
-import ru.medvedev.dictionary.records.RecordEng;
-import ru.medvedev.dictionary.records.RecordRus;
 
 import java.util.List;
 

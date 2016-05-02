@@ -1,10 +1,7 @@
 package ru.medvedev.dictionary.dao;
 
 import ru.medvedev.dictionary.records.GeneralRecord;
-import ru.medvedev.dictionary.records.RecordEng;
-import ru.medvedev.dictionary.records.RecordRus;
 
-import java.io.StringWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

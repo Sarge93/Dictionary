@@ -4,12 +4,14 @@ package ru.medvedev.dictionary.records;
  * Created by Сергей on 26.04.2016.
  */
 public class GeneralRecord {
-    RecordEng recordEng;
-    RecordRus recordRus;
+    private Record recordEng;
+    private Record recordRus;
+    private PropertiesRecord propertiesRecord;
 
-    public GeneralRecord(RecordRus recordRus, RecordEng recordEng) {
-        this.recordRus = recordRus;
+    public GeneralRecord(Record recordEng, Record recordRus, PropertiesRecord propertiesRecord) {
         this.recordEng = recordEng;
+        this.recordRus = recordRus;
+        this.propertiesRecord = propertiesRecord;
     }
 
     @Override
@@ -17,14 +19,19 @@ public class GeneralRecord {
         return "GeneralRecord{" +
                 "recordEng=" + recordEng +
                 ", recordRus=" + recordRus +
+                ", propertiesRecord=" + propertiesRecord +
                 '}';
     }
 
-    public RecordEng getRecordEng() {
+    public Record getRecordEng() {
         return recordEng;
     }
 
-    public RecordRus getRecordRus() {
+    public Record getRecordRus() {
         return recordRus;
+    }
+
+    public PropertiesRecord getPropertiesRecord() {
+        return propertiesRecord;
     }
 }
