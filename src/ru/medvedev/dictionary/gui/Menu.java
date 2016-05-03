@@ -1,28 +1,37 @@
 package ru.medvedev.dictionary.gui;
 
 import ru.medvedev.dictionary.Dictionary;
+import ru.medvedev.dictionary.Locale;
 import ru.medvedev.dictionary.command.*;
-import ru.medvedev.dictionary.records.GeneralRecord;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.List;
 import java.util.Scanner;
 
 /**
  * Created by Сергей on 27.04.2016.
  */
 public class Menu {
+
+    private static final String WELCOME = "Welcome to Dictionary\n-----------------------------------";
+    private static final String CHOOSECOM = "Choose command:\n" +
+            " 1. Find word\n" +
+            " 2. Add word\n" +
+            " 3. Update word info \n" +
+            " 4. Delete word \n" +
+            " 5. Show all words\n" +
+            " 6. Exit\n\nEnter: ";
+    private static final String ERR = "Incorrect command";
+    private static final String CHOOSELOC = "Choose locale:    (RUS, ENG)";
+
+    private static ManagerCommands managerCommands = new ManagerCommands();
+
     private Menu() {}
 
-    public static void getMenu() {
+    private static void execCommand(Command command) {
+        managerCommands.addCommand(command);
+        managerCommands.run();
+        managerCommands.clearListCommands();
+    }
 
-        try {
-            FileInputStream inputStream = new FileInputStream(new File("dsad"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+    public static void getMenu() {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -32,42 +41,29 @@ public class Menu {
         Command deleteWord = new DeleteWordCommand();
         Command showAllWords = new ShowAllWordsCommand();
 
-        ManagerCommands managerCommands = new ManagerCommands();
-
-        System.out.println("Welcome to Dictionary");
-        System.out.println("-----------------------------------");
+        System.out.println(WELCOME);
+        System.out.println(CHOOSELOC);
+        Dictionary.setLocale(Locale.valueOf(scanner.next().trim()));
 
         while(true) {
-            System.out.println("Choose command:\n 1. Find word\n 2. Add word\n 3. Update word info \n 4. Delete word \n 5. Show all words\n 6. Exit");
-            System.out.println();
-            System.out.println("Enter: ");
+            System.out.println(CHOOSECOM);
 
             int ch = scanner.nextInt();
 
             if (ch == 1) {
-                managerCommands.addCommand(findWord);
-                managerCommands.run();
-                managerCommands.clearListCommands();
+                execCommand(findWord);
             } else if (ch == 2) {
-                managerCommands.addCommand(addWord);
-                managerCommands.run();
-                managerCommands.clearListCommands();
+                execCommand(addWord);
             } else if (ch == 3) {
-                managerCommands.addCommand(updateWord);
-                managerCommands.run();
-                managerCommands.clearListCommands();
+                execCommand(updateWord);
             } else if (ch == 4) {
-                managerCommands.addCommand(deleteWord);
-                managerCommands.run();
-                managerCommands.clearListCommands();
+                execCommand(deleteWord);
             } else if (ch == 5) {
-                managerCommands.addCommand(showAllWords);
-                managerCommands.run();
-                managerCommands.clearListCommands();
+                execCommand(showAllWords);
             } else if (ch == 6) {
                 break;
             } else {
-                System.out.println("Incorrect command");
+                System.out.println(ERR);
             }
         }
 

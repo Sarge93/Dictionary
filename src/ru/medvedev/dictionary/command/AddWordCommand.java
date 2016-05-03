@@ -1,6 +1,9 @@
 package ru.medvedev.dictionary.command;
 
 import ru.medvedev.dictionary.Dictionary;
+import ru.medvedev.dictionary.records.GeneralRecord;
+import ru.medvedev.dictionary.records.PropertiesRecord;
+import ru.medvedev.dictionary.records.Record;
 
 import java.util.Scanner;
 
@@ -28,6 +31,12 @@ public class AddWordCommand extends AbstractCommand {
         if (s.equals("y")) {
             gender = enterCommand(ENTER);
         }
-        dictionary.addWord(wordEng,wordRus,pos,gender,sense);
+
+        Record recordEng = new Record(-1,wordEng);
+        Record recordRus = new Record(-1,wordRus);
+        PropertiesRecord propertiesRecord = new PropertiesRecord(-1,pos,sense,gender);
+        GeneralRecord generalRecord = new GeneralRecord(recordEng, recordRus, propertiesRecord);
+
+        dictionary.addWord(generalRecord);
     }
 }

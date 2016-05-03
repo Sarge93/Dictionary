@@ -1,5 +1,6 @@
 package ru.medvedev.test;
 
+import ru.medvedev.dictionary.dao.ConcreteOracleController;
 import ru.medvedev.dictionary.gui.Menu;
 
 /**

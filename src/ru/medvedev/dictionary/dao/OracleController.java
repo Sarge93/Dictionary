@@ -2,13 +2,16 @@ package ru.medvedev.dictionary.dao;
 
 import oracle.jdbc.OracleDriver;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Created by Сергей on 25.04.2016.
+ * Created by Сергей on 02.05.2016.
  */
-public abstract class AbstractController<E, K> {
+public abstract class OracleController<E, K> implements Controller<E, K> {
 
     private static final String URL = "jdbc:oracle:thin:@localhost:1521/xe";
     private static final String USERNAME = "system";
@@ -16,7 +19,7 @@ public abstract class AbstractController<E, K> {
 
     private Connection connection;
 
-    public AbstractController() {
+    public OracleController() {
 
         try {
             Driver driver = new OracleDriver();
@@ -43,27 +46,4 @@ public abstract class AbstractController<E, K> {
     public abstract E getEntityByName(K id);
     public abstract boolean delete(K id);
     public abstract boolean create(E entity);
-
-
-    //TODO Разобраться с PrepareStatement
-//    public PreparedStatement getPrepareStatement(String sql) {
-//        PreparedStatement ps = null;
-//        try {
-//            ps = connection.prepareStatement(sql);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return ps;
-//    }
-//
-//    public void closePrepareStatement(PreparedStatement ps) {
-//        if (ps != null) {
-//            try {
-//                ps.close();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
 }

@@ -1,6 +1,6 @@
 package ru.medvedev.dictionary;
 
-import ru.medvedev.dictionary.dao.UserController;
+import ru.medvedev.dictionary.dao.ConcreteOracleController;
 import ru.medvedev.dictionary.records.GeneralRecord;
 
 import java.util.List;
@@ -10,10 +10,11 @@ import java.util.List;
  */
 public class Dictionary {
     private static Dictionary dictionary;
-    private static UserController userController;
+    private static ConcreteOracleController userController;
+    private static Locale locale;
 
     static {
-        userController = new UserController();
+        userController = new ConcreteOracleController();
     }
 
     private Dictionary() {
@@ -26,14 +27,19 @@ public class Dictionary {
         return dictionary;
     }
 
+    public static Locale getLocale() {
+        return locale;
+    }
+
+    public static void setLocale(Locale locale) {
+        Dictionary.locale = locale;
+    }
+
     public List<GeneralRecord> getAllWords() {
         return userController.getAll();
     }
 
-    public void addWord(String wordEng, String wordRus, String partOfSpeech, String gender, String sense) {
-        RecordEng recordEng = new RecordEng(-1, wordEng, partOfSpeech, sense);
-        RecordRus recordRus = new RecordRus(-1, wordRus, gender);
-        GeneralRecord generalRecord = new GeneralRecord(recordRus,recordEng);
+    public void addWord(GeneralRecord generalRecord) {
         if (userController.create(generalRecord)) {
             System.out.println("Create row: Complete");
         } else {
